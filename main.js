@@ -65,7 +65,7 @@ function Flow(player1Name, player2Name) {
 
         if (moveResult === "Success") {
             switchTurns()
-            console.log('Valid move')
+            console.log('Valid move') // add content to the DOM
             const result = checkWinner(myBoard.board);
             if (result) {
                 if (result === "draw") {
@@ -129,6 +129,8 @@ function Flow(player1Name, player2Name) {
 
 
     return {
+        player1,
+        player2,
         showPlayers,
         myBoard,
         makeMove,
@@ -147,4 +149,24 @@ newGame.makeMove(2, 1); // O
 
 console.log(newGame.myBoard.board)
 
+function setUpGridClickListeners(newGame) {
+    const gridBoxes = document.querySelectorAll('.grid-box');
+    console.log(gridBoxes)
+    console.log(newGame.myBoard.board)
+    console.log(newGame.player1)
 
+    gridBoxes.forEach((box) => {
+        box.addEventListener("click", (event) => {
+            const clickedBox = event.target;
+            const row = clickedBox.dataset.row;
+            const col = clickedBox.dataset.col;
+
+            newGame.makeMove(row, col);
+            
+            console.log(`Clicked on ${row}, ${col}`)
+        })
+    })
+}
+
+// function to add content to the screen
+setUpGridClickListeners(newGame);
