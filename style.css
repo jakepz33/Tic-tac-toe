@@ -1,0 +1,45 @@
+
+
+html {
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gabarito', sans-serif; 
+}
+body {
+    background-color: rgb(201, 243, 243);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+header {
+    min-height: 12vh;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-size: 5rem;
+}
+
+/* GAME BOARD SQUARES */
+
+.gameboard {
+    width: 35%;
+    background-color: rgb(218, 63, 63);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 180px 180px 180px;
+    gap: 0.5rem;
+    position: absolute;
+    margin-top: 50px;
+    left: calc((100% - 35%)/2);
+
+}
+.gameboard > div {
+    background-color: antiquewhite;
+}
