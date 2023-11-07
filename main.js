@@ -33,7 +33,7 @@ function GameBoard() {
     }
     
     const printGame = () => {
-
+        // for DOM?
     }
 
     // GameBoard Return Statement
@@ -77,6 +77,15 @@ function Flow(player1Name, player2Name) {
         } else {
             console.log('Invalid move, try again.')
         }        
+    }
+    const resetGame = () => {
+        // Clear the game board by resetting each cell to an empty string
+        for (let row = 0; row < myBoard.board.length; row++) {
+            for (let col = 0; col < myBoard.board[row].length; col++) {
+                myBoard.board[row][col] = '';
+            }
+        }
+        playerTurn = player1;
     }
 
     const checkWinner = (board) => {
@@ -123,13 +132,9 @@ function Flow(player1Name, player2Name) {
         showPlayers,
         myBoard,
         makeMove,
+        resetGame,
     }
 }
-
-// const game = GameBoard();
-// console.log(game.board);
-// game.updateBoard(0, 0);
-// console.log(game.board);
 
 const newGame = Flow('Jake', 'Josh')
 console.log(newGame.showPlayers())
