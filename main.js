@@ -26,14 +26,14 @@ function GameBoard() {
         } else if (board[one][two] !== '') {
             return "Failure"// player switch doesn't happen
         } else {
-            board[one][two] = playerSymbol;
+            board[one][two] = playerSymbol; // this is where the board updates array
             return "Success"
         }
-        
+        // 
     }
     
     const printGame = () => {
-        // for DOM?
+        // f
     }
 
     // GameBoard Return Statement
@@ -44,27 +44,29 @@ function GameBoard() {
 }
 
 function Flow(player1Name, player2Name) {
-
     const player1 = Player(player1Name, 'X');
     const player2 = Player(player2Name, 'O');
     const myBoard = GameBoard()
     let playerTurn = player1
 
+    //RETURN PLAYERS
+    const getCurrentPlayerTurn = () => playerTurn; // how to update a var and return it
+
     const showPlayers = () => {
         return [player1, player2]
     }
 
+    //SWITCHTURNS
     const switchTurns = () => { // switches players turn
         playerTurn = playerTurn === player1 ? player2 : player1;
     }
 
+    //MAKEMOVE
     const makeMove = (index1, index2) => {
-    
         // should change the value of the index
         const moveResult = myBoard.updateBoard(index1, index2, playerTurn.symbol);
-
         if (moveResult === "Success") {
-            switchTurns()
+            //switchTurns()
             console.log('Valid move') // add content to the DOM
             const result = checkWinner(myBoard.board);
             if (result) {
@@ -76,8 +78,11 @@ function Flow(player1Name, player2Name) {
             }
         } else {
             console.log('Invalid move, try again.')
-        }        
+        }
+        return moveResult      
     }
+
+    //RESETGAME
     const resetGame = () => {
         // Clear the game board by resetting each cell to an empty string
         for (let row = 0; row < myBoard.board.length; row++) {
@@ -88,13 +93,13 @@ function Flow(player1Name, player2Name) {
         playerTurn = player1;
     }
 
+    //CHECKFORWINNER
     const checkWinner = (board) => {
         for (let row = 0; row < 3; row++) {
             if (board[row][0] === board[row][1] && board[row][0] == board[row][2] && board[row][0] !== '') {
                 return board[row][0];
             }
         }
-
         for (let col = 0; col < 3; col++) {
             if (board[0][col] === board[1][col] && board[0][col] === board[2][col] && board[0][col] !== '') {
                 return board[0][col]
@@ -131,21 +136,24 @@ function Flow(player1Name, player2Name) {
     return {
         player1,
         player2,
+        playerTurn,
         showPlayers,
         myBoard,
         makeMove,
         resetGame,
+        getCurrentPlayerTurn,
+        switchTurns,
     }
 }
 
 const newGame = Flow('Jake', 'Josh')
 console.log(newGame.showPlayers())
 
-newGame.makeMove(1, 1); // X
-newGame.makeMove(2, 0); // O
-console.log(newGame.myBoard.board)
-newGame.makeMove(1, 0); // X
-newGame.makeMove(2, 1); // O
+// newGame.makeMove(1, 1); // X
+// newGame.makeMove(2, 0); // O
+// console.log(newGame.myBoard.board)
+// newGame.makeMove(1, 0); // X
+// newGame.makeMove(2, 1); // O
 
 console.log(newGame.myBoard.board)
 
@@ -154,6 +162,7 @@ function setUpGridClickListeners(newGame) {
     console.log(gridBoxes)
     console.log(newGame.myBoard.board)
     console.log(newGame.player1)
+    console.log(newGame.playerTurn.symbol)
 
     gridBoxes.forEach((box) => {
         box.addEventListener("click", (event) => {
@@ -161,9 +170,17 @@ function setUpGridClickListeners(newGame) {
             const row = clickedBox.dataset.row;
             const col = clickedBox.dataset.col;
 
-            newGame.makeMove(row, col);
-            
+            const myMove = newGame.makeMove(row, col); // check for valid move
+            console.log(newGame.playerTurn.symbol)
+            if(myMove === "Success") {
+                const symbol = newGame.getCurrentPlayerTurn().symbol;
+                console.log("Switch before:", newGame.getCurrentPlayerTurn().symbol)
+                newGame.switchTurns();
+                console.log("Testing switch:", newGame.getCurrentPlayerTurn().symbol)
+                clickedBox.textContent = symbol;
+            }
             console.log(`Clicked on ${row}, ${col}`)
+            console.log(newGame.myBoard.board)
         })
     })
 }

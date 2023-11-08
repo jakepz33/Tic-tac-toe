@@ -48,3 +48,11 @@ h1 {
     background-color: rgb(255, 255, 255);
     border-radius: 15px 15px;
 }
+
+/* GRIDBOX */
+.grid-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+}
