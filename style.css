@@ -39,9 +39,9 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 160px 160px 160px;
     gap: 1.5rem;
-    position: absolute;
+    /* position: absolute; */
     margin-top: 50px;
-    left: calc((100% - 30%)/2);
+    /* left: calc((100% - 30%)/2); */
 
 }
 .gameboard > div {
@@ -55,4 +55,22 @@ h1 {
     justify-content: center;
     align-items: center;
     font-size: 5rem;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.button-div {
+    background-color: rgb(231, 221, 209);
+    width: 100%;
+    margin-top: 5rem;
+    text-align: center;
+}
+button {
+    padding: 15px 32px;
+    background-color: var(--background-color);
+    border: none;
 }

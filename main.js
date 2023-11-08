@@ -43,13 +43,13 @@ function GameBoard() {
     }
 }
 
-function Flow(player1Name, player2Name) {
+function Flow(player1Name = "Player1", player2Name = "Player2") {
     const player1 = Player(player1Name, 'X');
     const player2 = Player(player2Name, 'O');
     const myBoard = GameBoard()
     let playerTurn = player1
 
-    //RETURN PLAYERS
+    //GET UPDATED PLAYER
     const getCurrentPlayerTurn = () => playerTurn; // how to update a var and return it
 
     const showPlayers = () => {
@@ -65,21 +65,24 @@ function Flow(player1Name, player2Name) {
     const makeMove = (index1, index2) => {
         // should change the value of the index
         const moveResult = myBoard.updateBoard(index1, index2, playerTurn.symbol);
+        let gameResult = null;
+        const updateResult = () => gameResult;
+
         if (moveResult === "Success") {
             //switchTurns()
             console.log('Valid move') // add content to the DOM
-            const result = checkWinner(myBoard.board);
-            if (result) {
-                if (result === "draw") {
+            gameResult = checkWinner(myBoard.board);
+            if (gameResult) {
+                if (gameResult === "draw") {
                     console.log("It's a draw!");
                 } else {
-                    console.log(`${result} wins`);
+                    console.log(`${gameResult} wins`);
                 }
             }
         } else {
             console.log('Invalid move, try again.')
         }
-        return moveResult      
+        return {moveResult, gameResult, updateResult}   
     }
 
     //RESETGAME
@@ -146,8 +149,7 @@ function Flow(player1Name, player2Name) {
     }
 }
 
-const newGame = Flow('Jake', 'Josh')
-console.log(newGame.showPlayers())
+
 
 // newGame.makeMove(1, 1); // X
 // newGame.makeMove(2, 0); // O
@@ -155,14 +157,10 @@ console.log(newGame.showPlayers())
 // newGame.makeMove(1, 0); // X
 // newGame.makeMove(2, 1); // O
 
-console.log(newGame.myBoard.board)
-
-function setUpGridClickListeners(newGame) {
+function screenController() {
+    const game = Flow()
     const gridBoxes = document.querySelectorAll('.grid-box');
-    console.log(gridBoxes)
-    console.log(newGame.myBoard.board)
-    console.log(newGame.player1)
-    console.log(newGame.playerTurn.symbol)
+
 
     gridBoxes.forEach((box) => {
         box.addEventListener("click", (event) => {
@@ -170,20 +168,26 @@ function setUpGridClickListeners(newGame) {
             const row = clickedBox.dataset.row;
             const col = clickedBox.dataset.col;
 
-            const myMove = newGame.makeMove(row, col); // check for valid move
-            console.log(newGame.playerTurn.symbol)
-            if(myMove === "Success") {
-                const symbol = newGame.getCurrentPlayerTurn().symbol;
-                console.log("Switch before:", newGame.getCurrentPlayerTurn().symbol)
-                newGame.switchTurns();
-                console.log("Testing switch:", newGame.getCurrentPlayerTurn().symbol)
+            const myMove = game.makeMove(row, col); // check for valid move
+            console.log("Hello", game.getCurrentPlayerTurn().symbol)
+            console.log(game.makeMove.gameResult)
+            if(myMove.moveResult === "Success") {
+                const symbol = game.getCurrentPlayerTurn().symbol;
                 clickedBox.textContent = symbol;
+                console.log(myMove.gameResult) // if doesnt work -> updateResult()
+                //clickedBox.textContent = symbol;
+                let checkForWinner = myMove.gameResult;
+                if (checkForWinner != null && checkForWinner != "draw") {
+                    console.log(checkForWinner, "is the winner!")
+                }
+                game.switchTurns();
+                //clickedBox.textContent = symbol;
             }
-            console.log(`Clicked on ${row}, ${col}`)
-            console.log(newGame.myBoard.board)
+            // console.log(`Clicked on ${row}, ${col}`)
+            // console.log(game.myBoard.board)
         })
     })
 }
 
 // function to add content to the screen
-setUpGridClickListeners(newGame);
+screenController();
