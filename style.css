@@ -83,3 +83,20 @@ button:hover {
     background-color: pink;
 }
 
+/* Dialog */
+::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+
+}
+dialog {
+    /* height: 350px;
+    width: 350px; */
+    position: fixed;
+    /* border-radius: 15px 15px; */
+    text-align: center;
+    background-color: transparent;
+    color: white;
+    border: none;
+    
+    
+}

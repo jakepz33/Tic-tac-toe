@@ -161,6 +161,10 @@ function screenController() {
     const game = Flow()
     const gridBoxes = document.querySelectorAll('.grid-box');
     const resetGameButton = document.querySelector('.reset-button')
+    const dialog = document.querySelector('dialog');
+    dialog.classList.add('dialog-open')
+    let h1 = document.createElement("h1");
+    dialog.appendChild(h1)
 
 
     gridBoxes.forEach((box) => {
@@ -179,6 +183,13 @@ function screenController() {
                 let checkForWinner = myMove.gameResult;
                 if (checkForWinner != null && checkForWinner != "draw") {
                     console.log(checkForWinner, "is the winner!")
+                    // let h1 = document.createElement('h1')
+                    h1.textContent = `Player ${checkForWinner} wins!`
+                    // dialog.appendChild(h1);
+                    dialog.showModal()
+                } else if (checkForWinner != null && checkForWinner === "draw") {
+                    h1.textContent = `It's a ${checkForWinner}!`;
+                    dialog.showModal();
                 }
                 game.switchTurns();
             }
@@ -190,11 +201,21 @@ function screenController() {
         mySquares.forEach(square => {
             square.textContent = '';
         })
+    
         console.log("Hello World")
         game.resetGame()
         console.log("Reset Button", game.myBoard.board);
     })
-}
 
+    dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) {
+            dialog.close();
+            h1.textContent = "";
+        }
+    })
+
+}
+// const dialog = document.querySelector("dialog")
+// dialog.showModal();
 // function to add content to the screen
 screenController();
