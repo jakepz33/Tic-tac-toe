@@ -160,6 +160,7 @@ function Flow(player1Name = "Player1", player2Name = "Player2") {
 function screenController() {
     const game = Flow()
     const gridBoxes = document.querySelectorAll('.grid-box');
+    const resetGameButton = document.querySelector('.reset-button')
 
 
     gridBoxes.forEach((box) => {
@@ -168,24 +169,30 @@ function screenController() {
             const row = clickedBox.dataset.row;
             const col = clickedBox.dataset.col;
 
-            const myMove = game.makeMove(row, col); // check for valid move
-            console.log("Hello", game.getCurrentPlayerTurn().symbol)
-            console.log(game.makeMove.gameResult)
+            // check for valid move
+            const myMove = game.makeMove(row, col);
             if(myMove.moveResult === "Success") {
-                const symbol = game.getCurrentPlayerTurn().symbol;
-                clickedBox.textContent = symbol;
-                console.log(myMove.gameResult) // if doesnt work -> updateResult()
-                //clickedBox.textContent = symbol;
+                const symbol = game.getCurrentPlayerTurn().symbol; // get X or O
+                clickedBox.textContent = symbol; // add to DOM
+                console.log("Game result", myMove.gameResult) // if doesnt work -> updateResult()
+                console.log("Updated Board", game.myBoard.board)
                 let checkForWinner = myMove.gameResult;
                 if (checkForWinner != null && checkForWinner != "draw") {
                     console.log(checkForWinner, "is the winner!")
                 }
                 game.switchTurns();
-                //clickedBox.textContent = symbol;
             }
-            // console.log(`Clicked on ${row}, ${col}`)
-            // console.log(game.myBoard.board)
         })
+    })
+
+    resetGameButton.addEventListener("click", () => {
+        const mySquares = document.querySelectorAll('.gameboard .grid-box');
+        mySquares.forEach(square => {
+            square.textContent = '';
+        })
+        console.log("Hello World")
+        game.resetGame()
+        console.log("Reset Button", game.myBoard.board);
     })
 }
 
