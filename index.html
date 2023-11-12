@@ -15,20 +15,73 @@
     </header>
     <dialog>
     </dialog>
-    <div class="flexbox">
-        <div class="gameboard">
-            <div class="grid-box" data-row="0" data-col="0"></div>
-            <div class="grid-box" data-row="0" data-col="1"></div>
-            <div class="grid-box" data-row="0" data-col="2"></div>
-            <div class="grid-box" data-row="1" data-col="0"></div>
-            <div class="grid-box" data-row="1" data-col="1"></div>
-            <div class="grid-box" data-row="1" data-col="2"></div>
-            <div class="grid-box" data-row="2" data-col="0"></div>
-            <div class="grid-box" data-row="2" data-col="1"></div>
-            <div class="grid-box" data-row="2" data-col="2"></div>
+    <div id="start-screen">
+        <div class="flex-container">
+            <div class="flex-item" id="player1box">
+                <div class="player-item top" id="player">Player 1</div>
+                <!-- CHAR SYMBOL -->
+                <div class="player-item" id="player-1-symbol">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!-- CHAR SYMBOL -->
+                <!-- NAME INPUT -->
+                <div class="player-item" id="player-name">
+                    <label for="name-input-player1" id="name-input-label">Enter Name or Leave Default</label>
+                    <!-- ADD A CHARACTER LIMIT -->
+                    <input type="text" id="name-input-player1" name="name-input" style="width: 50%; border-radius: 1.5rem; text-align: center; none; height: 2rem;">
+                </div>
+                <div class="player-item" id="player1-logo">
+                    <span>X</span>
+                </div> <!-- NEEDS JS-->
+            </div>
+            <div class="flex-item middle" id="versus">
+                <div class="start-button-container">
+                    <h1>VS</h1>
+                    <button class="startButton">START</button>
+                </div>
+            </div>
+            <!-- PLAYER TWO CONTAINER -->
+            <div class="flex-item" id="player2box">
+                <div class="player-item top" id="player">Player 2</div>
+                <!-- CHAR SYMBOL -->
+                <div class="player-item" id="player-2-symbol">
+                    <label class="switch2">
+                        <input type="checkbox">
+                        <span class="slider2 round"></span>
+                    </label>
+                </div>
+                <!-- CHAR SYMBOL -->
+                <!-- NAME INPUT -->
+                <div class="player-item" id="player-name">
+                    <label for="name-input-player2" id="name-input-label">Enter Name or Leave Default</label>
+                    <!-- ADD A CHARACTER LIMIT -->
+                    <input type="text" id="name-input-player2" name="name-input" style="width: 50%; border-radius: 1.5rem; text-align: center; none; height: 2rem;">
+                </div>
+                <div class="player-item" id="player2-logo">
+                    <span>0</span>
+                </div> <!-- NEEDS JS-->
+            </div>
         </div>
-        <div class="button-div">
-            <button class="reset-button">Reset</button>
+    </div>
+    <div id="gameboard-container" style="display:none;">
+        <div class="flexbox">
+            <div class="gameboard">
+                <div class="grid-box" data-row="0" data-col="0"></div>
+                <div class="grid-box" data-row="0" data-col="1"></div>
+                <div class="grid-box" data-row="0" data-col="2"></div>
+                <div class="grid-box" data-row="1" data-col="0"></div>
+                <div class="grid-box" data-row="1" data-col="1"></div>
+                <div class="grid-box" data-row="1" data-col="2"></div>
+                <div class="grid-box" data-row="2" data-col="0"></div>
+                <div class="grid-box" data-row="2" data-col="1"></div>
+                <div class="grid-box" data-row="2" data-col="2"></div>
+            </div>
+            <div class="button-div">
+                <button class="reset-button">Reset</button>
+            </div>
         </div>
     </div>
     <script src="main.js"></script>

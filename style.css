@@ -2,14 +2,20 @@
 :root {
     --primary-color: #FFFFFF;
     --secondary-color: #282424;
-    --background-color: #EEEEEE;
-    --other-background: 
+    --background-color: #13072e;
+    --gradient-background: linear-gradient(135deg, #13072e, #3f2182);
+    --horizon-font: 'Horizon', sans-serif;
+    --card-color: #381d74;
+}
+@font-face {
+    font-family: 'Horizon';
+    src: url(fonts/horizon.otf) format('opentype');
 }
 html {
     font-size: 62.5%;
     margin: 0;
     padding: 0;
-    font-family: 'Gabarito', sans-serif; 
+    /* font-family: 'Gabarito', sans-serif;  */
 }
 body {
     background-color: var(--background-color);
@@ -17,12 +23,14 @@ body {
     padding: 0;
     min-height: 100vh;
     width: 100vw;
+    font-family: var(--horizon-font);
 }
 
 header {
     min-height: 12vh;
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,5 +106,229 @@ dialog {
     color: white;
     border: none;
     
-    
+}
+/* START SCREEN */
+#start-screen {
+    background: var(--gradient-background);
+    height: 60vh;
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container {
+    height: 90%;
+    width: 90%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+}
+.flex-item {
+    flex: 1;
+    border-radius: 25px;
+}
+.flex-item.middle {
+    flex: 0.8;
+    background-color: transparent;
+}
+
+/* PLAYER ONE CONTAINER */
+#player1box {
+    background-color: var(--card-color);
+    display: flex;
+    flex-direction: column;
+}
+.player-item.top {
+    flex: 0.5;
+}
+.player-item {
+    flex: 1;
+    text-align:center;
+    color: white;
+}
+#player {
+    margin-top: 5rem;
+    background-color: transparent;
+    font-size: 3rem;
+    color: white;
+}
+#player-1-symbol { /* TO BE DELETED*/
+    background-color: transparent;
+}
+#player-name {
+    background-color: transparent; /*TO BE DELETED*/
+    flex: 0.7;
+}
+#player1-logo {
+    background-color: transparent;
+}
+#player2box {
+    background-color: var(--card-color);
+}
+/* PLAYER ONE CONTAINER - SLIDER BUTTON */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 17rem;
+    height: 5rem;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "X";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    height: 4.6rem;
+    width: 8.5rem;
+    left: 0;
+    bottom: 0;
+    background-color: #8c52ff;
+    color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 2px solid red;
+}
+
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(8.2rem);
+    -ms-transform: translateX(8.2rem);
+    transform: translateX(8.2rem);
+}
+
+  /* Rounded sliders */
+.slider.round {
+    border-radius: 15rem;
+}
+  
+.slider.round:before {
+    border-radius: 15rem;
+}
+/* PLAYER ONE NAME INPUT */
+#player-name {
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.6rem;
+    /* padding: 0 4rem 0 4rem; */
+    gap: 1rem;
+}
+
+/*PLAYER ONE LOGO*/
+#player1-logo > span {
+    font-size: 9rem;
+}
+/* Start button column design */
+.start-button-container {
+    /* background-color: #7a6c9c; */
+    color: white;
+    margin-top: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PLAYERTWO CONTAINER */
+#player2box {
+    background-color: var(--card-color);
+    display: flex;
+    flex-direction: column;
+}
+#player2-logo > span {
+    font-size: 9rem;
+}
+/* PLAYER2 BUTTON */
+.switch2 {
+    position: relative;
+    display: inline-block;
+    width: 17rem;
+    height: 5rem;
+}
+.switch2 input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider2 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider2:before {
+    position: absolute;
+    content: "O";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    height: 4.6rem;
+    width: 8.5rem;
+    left: 48%;
+    bottom: 0;
+    background-color: #ff5757;
+    color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 2px solid #7ed957;
+}
+
+  
+input:checked + .slider2 {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider2 {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider2:before {
+    -webkit-transform: translateX(-8.2rem);
+    -ms-transform: translateX(-8.2rem);
+    transform: translateX(-8.2rem);
+}
+
+.slider2.round {
+    border-radius: 15rem;
+}
+  
+.slider2.round:before {
+    border-radius: 15rem;
 }
