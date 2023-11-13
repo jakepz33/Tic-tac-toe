@@ -107,6 +107,7 @@ dialog {
     border: none;
     
 }
+
 /* START SCREEN */
 #start-screen {
     background: var(--gradient-background);
@@ -212,15 +213,18 @@ dialog {
 }
 
   
-input:checked + .slider {
+/* input:checked + .slider {
     background-color: #2196F3;
-}
+} */
   
 input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
-}
+} 
+
 
 input:checked + .slider:before {
+    content: "O";
+    background-color: #ff5757;
     -webkit-transform: translateX(8.2rem);
     -ms-transform: translateX(8.2rem);
     transform: translateX(8.2rem);
@@ -311,15 +315,18 @@ input:checked + .slider:before {
 }
 
   
-input:checked + .slider2 {
+/* input:checked + .slider2 {
     background-color: #2196F3;
-}
+} */
   
 input:focus + .slider2 {
     box-shadow: 0 0 1px #2196F3;
 }
 
 input:checked + .slider2:before {
+    content: "X";
+    background-color: #8c52ff;
+    border: 2px solid #d99257;
     -webkit-transform: translateX(-8.2rem);
     -ms-transform: translateX(-8.2rem);
     transform: translateX(-8.2rem);

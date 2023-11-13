@@ -164,11 +164,16 @@ function screenController() {
     const dialog = document.querySelector('dialog');
     dialog.classList.add('dialog-open')
     let h1 = document.createElement("h1");
+    let winner;
     dialog.appendChild(h1)
 
 
     gridBoxes.forEach((box) => {
         box.addEventListener("click", (event) => {
+            if (winner) {
+                console.log("Return because winner is True")
+                return
+            }
             const clickedBox = event.target;
             const row = clickedBox.dataset.row;
             const col = clickedBox.dataset.col;
@@ -198,6 +203,7 @@ function screenController() {
 
     resetGameButton.addEventListener("click", () => {
         const mySquares = document.querySelectorAll('.gameboard .grid-box');
+        winner = false;
         mySquares.forEach(square => {
             square.textContent = '';
         })
@@ -211,10 +217,68 @@ function screenController() {
         if (event.target === dialog) {
             dialog.close();
             h1.textContent = "";
+            winner = true;
         }
     })
 
 }
+
+function playerSelection() {
+    const player1switch = document.querySelector('#player1-checkbox');
+    const player2switch = document.querySelector('#player2-checkbox');
+
+    let player1span = document.querySelector('#player1span');
+    let player2span = document.querySelector('#player2span')
+
+    console.log(player2switch.checked);
+    console.log(player1switch.textContent);
+    let player1choice = "X";
+    let player2choice = "O"
+
+
+    // get updated choice
+    const get1Choice = () => player1choice;
+    const get2Choice = () => player2choice;
+
+    player1switch.addEventListener("change", function() { // call function to toggle switch 2
+        if (player1switch.checked) {
+            console.log("Switch is ON")
+            player1choice = "O";
+            player2choice = "X"
+            player2switch.checked = true; // make player 2 X
+            console.log("get 1 choice", get1Choice())
+        } else {
+            console.log("Switch is OFF")
+            player2switch.checked = false;
+            player1choice = "X";
+            player2choice = "O"
+        }
+        player1span.textContent = get1Choice();
+        player2span.textContent = get2Choice();
+        // call function to update VISUAL
+    })
+
+    player2switch.addEventListener("change", () => {
+        if (player2switch.checked) {
+            console.log("Switch is ON for 2")
+            player1switch.checked = true;
+            player2choice = "X"
+            player1choice = "O"
+        } else {
+            console.log("Switch is OFF")
+            player1switch.checked = false;
+            player2choice = "O"
+            player1choice = "X"
+        }
+        console.log("get 2 choice", get2Choice())
+        player1span.textContent = get1Choice();
+        player2span.textContent = get2Choice();
+        // call function to update visual
+    } )
+
+}
+
+playerSelection();
 // const dialog = document.querySelector("dialog")
 // dialog.showModal();
 // function to add content to the screen

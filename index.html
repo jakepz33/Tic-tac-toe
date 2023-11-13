@@ -15,6 +15,7 @@
     </header>
     <dialog>
     </dialog>
+    <!-- START SCREEN - 1st VIEW -->
     <div id="start-screen">
         <div class="flex-container">
             <div class="flex-item" id="player1box">
@@ -22,7 +23,7 @@
                 <!-- CHAR SYMBOL -->
                 <div class="player-item" id="player-1-symbol">
                     <label class="switch">
-                        <input type="checkbox">
+                        <input id="player1-checkbox" type="checkbox">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -34,7 +35,7 @@
                     <input type="text" id="name-input-player1" name="name-input" style="width: 50%; border-radius: 1.5rem; text-align: center; none; height: 2rem;">
                 </div>
                 <div class="player-item" id="player1-logo">
-                    <span>X</span>
+                    <span id="player1span">X</span>
                 </div> <!-- NEEDS JS-->
             </div>
             <div class="flex-item middle" id="versus">
@@ -49,7 +50,7 @@
                 <!-- CHAR SYMBOL -->
                 <div class="player-item" id="player-2-symbol">
                     <label class="switch2">
-                        <input type="checkbox">
+                        <input id="player2-checkbox" type="checkbox">
                         <span class="slider2 round"></span>
                     </label>
                 </div>
@@ -61,12 +62,13 @@
                     <input type="text" id="name-input-player2" name="name-input" style="width: 50%; border-radius: 1.5rem; text-align: center; none; height: 2rem;">
                 </div>
                 <div class="player-item" id="player2-logo">
-                    <span>0</span>
+                    <span id="player2span">0</span>
                 </div> <!-- NEEDS JS-->
             </div>
         </div>
     </div>
-    <div id="gameboard-container" style="display:none;">
+    <!-- GAMEBOARD CONTAINER - 2ND VIEW -->
+    <div id="gameboard-container" style="display: none;">
         <div class="flexbox">
             <div class="gameboard">
                 <div class="grid-box" data-row="0" data-col="0"></div>
@@ -83,6 +85,7 @@
                 <button class="reset-button">Reset</button>
             </div>
         </div>
+        <div class="scoreboard"></div>
     </div>
     <script src="main.js"></script>
 </body>
